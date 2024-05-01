@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Number Checker</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #3ba2f7, #3fafb5); 
+    color: #fff;
+    transition: all 0.5s ease; 
+  }
+
+  .header {
+    position: absolute;
+    top: 10px; 
+    left: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+
+  .container {
+    text-align: center;
+    padding: 40px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.1); 
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); 
+    backdrop-filter: blur(10px); 
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0; 
+    transform: scale(0.9); 
+    animation: fadeIn 1s forwards;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+
+  .input-field {
+    position: relative; 
+    margin-bottom: 25px;
+  }
+
+  input[type="text"] {
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    width: 300px;
+    font-family: inherit;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease;
+  }
+
+  input[type="text"]:focus {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3); 
+  }
+
+  .tooltip {
+    position: absolute;
+    bottom: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #555;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .input-field input:focus + .tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  button {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 10px;
+  }
+
+  .enter-button {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  .enter-button:hover {
+    background-color: #45a049; 
+  }
+
+  #message {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 25px;
+  }
+
+
+  @media (max-width: 600px) {
+    .container {
+      padding: 20px;
+    }
+    input[type="text"] {
+      width: 100%;
+    }
+    button {
+      padding: 10px 20px;
+    }
+    h1 {
+      font-size: 2em;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="header">Nama:   Rama Ijon Turnip | NIM: 221011060123 </div> 
+<div class="container">
+  <h1>Number Checker</h1>
+  <p>Enter a number to check if it's a number or not.</p>
+  <div class="input-field">
+    <input type="text" id="userInput">
+    <div class="tooltip">Please enter a number or text</div> 
+  </div>
+  <button class="enter-button" onclick="validateInput()">Enter</button>
+  <p id="message"></p>
+</div>
+
+<script>
+  function validateInput() {
+    var input = document.getElementById("userInput").value.trim();
+    if (input === "") {
+      document.getElementById("message").style.color = "#fff";
+      document.getElementById("message").innerHTML = "Please enter a number or text first.";
+    } else {
+      checkInput(input);
+    }
+  }
+  
+  function checkInput(input) {
+    var messageElement = document.getElementById("message");
+    if (isNaN(input)) {
+      messageElement.style.color = "#f44336";
+      messageElement.innerHTML = "No, Is Not a Number";
+    } else {
+      messageElement.style.color = "#4CAF50";
+      messageElement.innerHTML = "Yes, Is a Number";
+    }
+  }
+  </script>
+
+</body>
+</html>
